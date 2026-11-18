@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="brand">#0F7A4F</color>
+    <color name="brand_dark">#0A5C3B</color>
+    <color name="bg">#FFFFFF</color>
+
+    <string name="error_title">Internet aloqasi yo\'q</string>
+    <string name="error_text">Internetni tekshirib, qayta urinib ko\'ring.</string>
+    <string name="retry">Qayta urinish</string>
+
+    <style name="AppTheme" parent="@android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:colorPrimary">@color/brand</item>
+        <item name="android:colorPrimaryDark">@color/brand_dark</item>
+        <item name="android:colorAccent">@color/brand</item>
+        <item name="android:statusBarColor">@color/brand_dark</item>
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
+</resources>

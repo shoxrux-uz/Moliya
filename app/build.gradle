@@ -1,0 +1,57 @@
+plugins {
+    id 'com.android.application'
+}
+
+// Har safar GitHub'da yig'ilganda versiya raqami o'zi oshadi,
+// shuning uchun yangi APK eski ilova ustidan o'rnatiladi.
+def runNumber = (System.getenv("GITHUB_RUN_NUMBER") ?: "1").toInteger()
+
+android {
+    namespace 'uz.shoxrux.webilova'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId project.property('APP_ID')
+        minSdk 21
+        targetSdk 34
+        versionCode runNumber
+        versionName "1.0.${runNumber}"
+
+        resValue "string", "app_name", "\"" + project.property('APP_NAME') + "\""
+        buildConfigField "String", "APP_URL", "\"" + project.property('APP_URL') + "\""
+    }
+
+    buildFeatures {
+        buildConfig true
+    }
+
+    // Doimiy kalit: har bir yangi APK eski ilova ustidan yangilanadi.
+    signingConfigs {
+        fixed {
+            storeFile file('ilova.keystore')
+            storePassword 'android'
+            keyAlias 'ilova'
+            keyPassword 'android'
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.fixed
+        }
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.fixed
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lint {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+}
